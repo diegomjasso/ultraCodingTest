@@ -1,0 +1,33 @@
+div.basket-page-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div.products-grid {
+        display: flex;
+        flex-direction: column;
+        margin: 40px 0px;
+        max-width: 600px;
+
+        app-basket-product {
+            margin: 10px 0px;
+        }
+    }
+
+    p.total-amount {
+        display: flex;
+        flex-direction: column;
+    }
+
+    p.error-message {
+        color: red;
+        display: flex;
+        flex-direction: column;
+    }
+
+    button {
+        display: flex;
+        flex-direction: column;
+    }
+}

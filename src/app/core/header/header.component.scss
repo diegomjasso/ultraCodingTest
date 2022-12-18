@@ -1,0 +1,33 @@
+div.header-root {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    h1 {
+        &:hover {
+            cursor: pointer;
+        }
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    div.products-options {
+        display: flex;
+        flex-direction: row;
+        
+        app-wallet {
+            margin-right: 10px;
+        }
+
+        app-basket {
+            &:hover {
+                cursor: pointer;
+            }
+
+            margin-left: 10px;
+        }
+    }
+}
