@@ -17,8 +17,6 @@ export class BasketProductComponent {
     constructor(private store: Store) {}
 
     removeItem($event: any) {
-        console.log('$event', $event)
-        console.log('this.ind', this.ind)
         if ($event && this.ind !== null) {
             this.store.dispatch(
                 appStore.modules.basketModule.actions.removeProduct({
