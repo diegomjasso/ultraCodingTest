@@ -1,5 +1,5 @@
-import { Component, Input } from "@angular/core";
-import { Router } from "@angular/router";
+import { Component, Input } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'app-header',
@@ -7,12 +7,12 @@ import { Router } from "@angular/router";
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-    @Input() header: string = 'Marketplace';
+    @Input() header: string = 'Marketplace'
 
     constructor(private router: Router) {}
 
     goToHome() {
-        this.router.navigate(['/']);
+        this.router.navigate(['/'])
     }
 
     goToBasket() {

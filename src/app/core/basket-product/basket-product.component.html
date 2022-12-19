@@ -1,12 +1,12 @@
 <div class="basket-product-root container text-center">
     <div class="img">
-        <img [src]="product.imagePath" width="80" height="80">
+        <img [src]="product.imagePath" width="80" height="80" />
     </div>
     <div class="info">
         <p class="product-name">{{ product.productName }}</p>
         <p class="price">{{ product.price }}</p>
     </div>
     <div class="remove">
-        <fa-icon [icon]="faTrash" (click)="removeItem($event)"></fa-icon> 
+        <fa-icon [icon]="faTrash" (click)="removeItem($event)"></fa-icon>
     </div>
 </div>

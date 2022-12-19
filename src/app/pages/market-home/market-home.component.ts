@@ -1,5 +1,7 @@
-import { Component } from "@angular/core";
-import { Product } from "../../../types/product.type";
+import { Component } from '@angular/core'
+import { Store } from '@ngrx/store'
+import appStore from 'src/store'
+import { Product } from '../../../types/product.type'
 
 @Component({
     selector: 'app-market-home',
@@ -7,14 +9,14 @@ import { Product } from "../../../types/product.type";
     styleUrls: ['./market-home.component.scss']
 })
 export class MarketHomeComponent {
-    itemsPeerColumn = 4;
+    itemsPeerColumn = 4
     splitArray = (array: any[]) => {
-        const finalArray = [];
+        const finalArray = []
         for (let i = 0; i < array.length; i += this.itemsPeerColumn) {
-            finalArray.push(array.slice(i, i + this.itemsPeerColumn));
+            finalArray.push(array.slice(i, i + this.itemsPeerColumn))
         }
-        return finalArray;
-    } 
+        return finalArray
+    }
 
     products: Product[] = [
         {
@@ -72,17 +74,19 @@ export class MarketHomeComponent {
             productName: 'Product 11',
             price: 31
         }
-    ];
+    ]
 
-    data: any[] = [];
-    
-    constructor() {
-        this.data = this.splitArray(this.products);
+    data: any[] = []
+
+    constructor(private store: Store) {
+        this.data = this.splitArray(this.products)
     }
 
     addToBasket($event: any, product: Product) {
         if ($event) {
-            console.log("product", product);
+            this.store.dispatch(
+                appStore.modules.basketModule.actions.addProduct(product)
+            )
         }
     }
 }

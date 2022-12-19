@@ -1,2 +1,2 @@
-export {Wallet} from './wallet.class';
-export {Basket} from './basket.class';
+export { Wallet } from './wallet.class'
+export { Basket } from './basket.class'

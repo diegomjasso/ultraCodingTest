@@ -1,3 +1,3 @@
 export class Wallet {
-    balance?: number
+    balance: number = 0
 }
