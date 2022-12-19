@@ -1,0 +1,22 @@
+div.product-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+
+    img {
+        display: flex;
+        flex-direction: column;
+    }
+
+    p.product-name {
+        display: flex;
+        flex-direction: column;
+    }
+
+    p.product-price {
+        display: flex;
+        flex-direction: column;
+    }
+}

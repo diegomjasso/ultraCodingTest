@@ -1,0 +1,173 @@
+<div class="checkout-root">
+    <form
+        [formGroup]="userForm"
+        *ngIf="!processCompleted"
+        (ngSubmit)="submitPayment($event)"
+    >
+        <div class="mb-3 col col-6" formGroupName="name">
+            <label class="form-label">Name:</label>
+            <div class="input-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder="First name"
+                    formControlName="firstName"
+                    required
+                />
+                <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder="Last name"
+                    formControlName="lastName"
+                    required=""
+                />
+            </div>
+            <div
+                *ngIf="
+                    userForm.get('name')?.get('firstName')?.invalid &&
+                    (userForm.get('name')?.get('firstName')?.dirty ||
+                        userForm.get('name')?.get('firstName')?.touched)
+                "
+            >
+                <div
+                    *ngIf="userForm.get('name')?.get('firstName')?.errors?.['required']"
+                    class="error-message"
+                >
+                    Name is required.
+                </div>
+            </div>
+            <div
+                *ngIf="
+                    userForm.get('name')?.get('lastName')?.invalid &&
+                    (userForm.get('name')?.get('lastName')?.dirty ||
+                        userForm.get('name')?.get('lastName')?.touched)
+                "
+            >
+                <div
+                    *ngIf="userForm.get('name')?.get('lastName')?.errors?.['required']"
+                    class="error-message"
+                >
+                    LastName is required.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3" formGroupName="address">
+            <label class="form-label">Address:</label>
+            <input
+                id="street"
+                class="form-control"
+                type="text"
+                formControlName="street"
+                placeholder="Street"
+            />
+            <div class="input-group">
+                <input
+                    id="city"
+                    class="form-control"
+                    type="text"
+                    formControlName="city"
+                    placeholder="City"
+                />
+                <input
+                    id="state"
+                    class="form-control"
+                    type="text"
+                    formControlName="state"
+                    placeholder="State"
+                />
+            </div>
+            <div
+                *ngIf="
+                    userForm.get('address')?.get('street')?.invalid &&
+                    (userForm.get('address')?.get('street')?.dirty ||
+                        userForm.get('address')?.get('street')?.touched)
+                "
+            >
+                <div
+                    *ngIf="userForm.get('address')?.get('street')?.errors?.['required']"
+                    class="error-message"
+                >
+                    Street is required.
+                </div>
+            </div>
+            <div
+                *ngIf="
+                    userForm.get('address')?.get('city')?.invalid &&
+                    (userForm.get('address')?.get('city')?.dirty ||
+                        userForm.get('address')?.get('city')?.touched)
+                "
+            >
+                <div
+                    *ngIf="userForm.get('address')?.get('city')?.errors?.['required']"
+                    class="error-message"
+                >
+                    City is required.
+                </div>
+            </div>
+            <div
+                *ngIf="
+                    userForm.get('address')?.get('state')?.invalid &&
+                    (userForm.get('address')?.get('state')?.dirty ||
+                        userForm.get('address')?.get('state')?.touched)
+                "
+            >
+                <div
+                    *ngIf="userForm.get('address')?.get('state')?.errors?.['required']"
+                    class="error-message"
+                >
+                    State is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 col col-6">
+            <label for="email" class="form-label">Email</label>
+            <input
+                type="email"
+                class="form-control"
+                id="email"
+                formControlName="email"
+                placeholder="name@example.com"
+            />
+            <div
+                *ngIf="
+                    userForm.get('email')?.invalid &&
+                    (userForm.get('email')?.dirty ||
+                        userForm.get('email')?.touched)
+                "
+            >
+                <div
+                    *ngIf="userForm.get('email')?.errors?.['required']"
+                    class="error-message"
+                >
+                    E-mail is required.
+                </div>
+                <div
+                    *ngIf="userForm.get('email')?.errors?.['email']"
+                    class="error-message"
+                >
+                    This fiels needs to be an e-mail.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">Total: {{ totalAmount | currency }}</div>
+
+        <button
+            class="btn btn-primary"
+            [disabled]="!userForm.valid"
+            type="submit"
+        >
+            Pay
+        </button>
+    </form>
+
+    <div
+        class="payment-compleated-root container-fluid"
+        *ngIf="processCompleted"
+    >
+        <h3>Thank you for your purchase</h3>
+        <button class="btn btn-primary" (click)="goToHome()">Buy more</button>
+    </div>
+</div>

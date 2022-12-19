@@ -1,0 +1,28 @@
+<div class="basket-page-root">
+    <div
+        class="products-grid container text-center"
+        *ngIf="productsSelected.length > 0"
+    >
+        <div
+            class="row"
+            *ngFor="let dataItem of productsSelected; let i = index"
+        >
+            <app-basket-product
+                [product]="dataItem"
+                [ind]="i"
+            ></app-basket-product>
+        </div>
+    </div>
+    <p *ngIf="productsSelected.length === 0">
+        There are not items on your basket
+    </p>
+    <p class="total-amount">{{ totalAmount | currency }}</p>
+    <p class="error-message" *ngIf="balanceError">The balance is not enough</p>
+    <button
+        class="btn btn-primary"
+        [disabled]="balanceError || productsSelected.length === 0"
+        (click)="goToCheckout($event)"
+    >
+        Checkout
+    </button>
+</div>
