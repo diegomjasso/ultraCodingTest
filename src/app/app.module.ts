@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core'
+import { InjectionToken, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
-import { StoreModule } from '@ngrx/store'
-
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { BasketComponent } from './core/basket/basket.component'
@@ -16,6 +16,9 @@ import { BasketProductComponent } from './core/basket-product/basket-product.com
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import appStore from 'src/store'
+import { allProducts } from './data/fake-data';
+
+export const FAKE_PRODUCTS = new InjectionToken('Fake data');
 
 @NgModule({
     declarations: [
@@ -34,13 +37,20 @@ import appStore from 'src/store'
         AppRoutingModule,
         StoreModule.forRoot({
             basket: appStore.modules.basketModule.reducer.basketReducer,
-            wallet: appStore.modules.walletModule.reducer.walletReducer
+            wallet: appStore.modules.walletModule.reducer.walletReducer,
+            products: appStore.modules.productsModule.reducer.productsReducer
         }),
         FontAwesomeModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        EffectsModule.forRoot([appStore.modules.productsModule.effects.productsEffects]),
     ],
-    providers: [],
+    providers: [
+      {
+        provide: FAKE_PRODUCTS,
+        useValue: allProducts,
+      },
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

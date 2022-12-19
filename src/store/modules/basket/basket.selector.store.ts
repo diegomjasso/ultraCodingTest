@@ -9,5 +9,5 @@ export const selectBasket = createSelector(
 
 export const selectBasketProducts = createSelector(
     basketFeatureState,
-    (state: Basket) => state.products
+    (state: Basket) => state?.products || []
 )
